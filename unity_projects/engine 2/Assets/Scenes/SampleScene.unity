@@ -216,6 +216,8 @@ MonoBehaviour:
     m_Bits: 0
   creaturePhysicsMaterial: {fileID: 0}
   circleRadius: 7
+  CreatureObservationVector: []
+  isInitialized: 0
 --- !u!114 &53208899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,6 +420,8 @@ MonoBehaviour:
     m_Bits: 0
   creaturePhysicsMaterial: {fileID: 0}
   circleRadius: 7
+  CreatureObservationVector: []
+  isInitialized: 0
 --- !u!114 &65284396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -620,6 +624,8 @@ MonoBehaviour:
     m_Bits: 0
   creaturePhysicsMaterial: {fileID: 0}
   circleRadius: 7
+  CreatureObservationVector: []
+  isInitialized: 0
 --- !u!114 &85050638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1065,6 +1071,8 @@ MonoBehaviour:
     m_Bits: 0
   creaturePhysicsMaterial: {fileID: 0}
   circleRadius: 7
+  CreatureObservationVector: []
+  isInitialized: 0
 --- !u!114 &223974229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1510,6 +1518,8 @@ MonoBehaviour:
     m_Bits: 0
   creaturePhysicsMaterial: {fileID: 0}
   circleRadius: 7
+  CreatureObservationVector: []
+  isInitialized: 0
 --- !u!114 &633987597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1806,6 +1816,8 @@ MonoBehaviour:
     m_Bits: 0
   creaturePhysicsMaterial: {fileID: 0}
   circleRadius: 7
+  CreatureObservationVector: []
+  isInitialized: 0
 --- !u!114 &721266467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2244,6 +2256,8 @@ MonoBehaviour:
     m_Bits: 0
   creaturePhysicsMaterial: {fileID: 0}
   circleRadius: 7
+  CreatureObservationVector: []
+  isInitialized: 0
 --- !u!114 &883691862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2440,6 +2454,8 @@ MonoBehaviour:
     m_Bits: 0
   creaturePhysicsMaterial: {fileID: 0}
   circleRadius: 7
+  CreatureObservationVector: []
+  isInitialized: 0
 --- !u!114 &1098748863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2991,6 +3007,8 @@ MonoBehaviour:
     m_Bits: 0
   creaturePhysicsMaterial: {fileID: 0}
   circleRadius: 7
+  CreatureObservationVector: []
+  isInitialized: 0
 --- !u!114 &1577749886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3280,6 +3298,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1991002842}
+  - component: {fileID: 1991002843}
   m_Layer: 0
   m_Name: TrainingManager
   m_TagString: Untagged
@@ -3303,6 +3322,28 @@ Transform:
   - {fileID: 1228423028}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1991002843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991002841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 480906935941243cbbb9799519cc349c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allCreaturesObservationVector: []
+  agent0: {fileID: 883691855}
+  agent1: {fileID: 53208896}
+  agent2: {fileID: 721266464}
+  agent3: {fileID: 1098748860}
+  agent4: {fileID: 85050635}
+  agent5: {fileID: 633987594}
+  agent6: {fileID: 1577749883}
+  agent7: {fileID: 65284393}
+  agent8: {fileID: 223974226}
 --- !u!1 &2059239960
 GameObject:
   m_ObjectHideFlags: 0

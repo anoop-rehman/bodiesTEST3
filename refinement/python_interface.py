@@ -9,7 +9,8 @@ def take_random_actions(env, behavior_name, n_agents, action_spec):
     env.set_actions(behavior_name, ActionTuple(discrete=random_actions))
 
 # Load and reset the environment
-env = UnityEnvironment(file_name="/Users/andrewgordienko/Documents/env9")
+# env = UnityEnvironment(file_name="/Users/andrewgordienko/Documents/env9")
+env = UnityEnvironment(file_name="/Users/anooprehman/Documents/uoft/extracurricular/design_teams/utmist2/bodiesTEST3/unity_projects/engine 2/Builds/v3testBuild2_bigVec.app")
 env.reset()
 
 behavior_names = list(env.behavior_specs)
