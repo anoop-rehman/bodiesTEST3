@@ -53,11 +53,11 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 2202}
+      Script: {instanceID: 2198}
     - Class: 114
-      Script: {instanceID: 3434}
+      Script: {instanceID: 3422}
     - Class: 114
-      Script: {instanceID: 7790}
+      Script: {instanceID: 7746}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -1004,5 +1004,5 @@ ScriptsOnlyBuild:
   platform: 2
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: /Users/anooprehman/Documents/uoft/extracurricular/design_teams/utmist2/bodiesTEST2/unity_projects/engine
-    2/Builds/testBuild2_withDefaults.app
+  playerPath: /Users/anooprehman/Documents/uoft/extracurricular/design_teams/utmist2/bodiesTEST3/unity_projects/engine
+    2/Builds/v3testBuild1.app
