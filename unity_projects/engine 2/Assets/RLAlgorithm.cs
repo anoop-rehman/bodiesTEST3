@@ -7,6 +7,7 @@ public class RLAlgorithm : MonoBehaviour
 {
     public List<float> allCreaturesObservationVector = new();
     const int OBSERVATION_VECTOR_SIZE = 47;
+    public GameObject agent0;
     public GameObject agent1;
     public GameObject agent2;
     public GameObject agent3;
@@ -15,7 +16,6 @@ public class RLAlgorithm : MonoBehaviour
     public GameObject agent6;
     public GameObject agent7;
     public GameObject agent8;
-    public GameObject agent9;
 
     private List<GameObject> agents;
 
@@ -25,6 +25,7 @@ public class RLAlgorithm : MonoBehaviour
     {
         agents = new List<GameObject>
         {
+            agent0,
             agent1,
             agent2,
             agent3,
@@ -33,18 +34,21 @@ public class RLAlgorithm : MonoBehaviour
             agent6,
             agent7,
             agent8,
-            agent9
         };
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        allCreaturesObservationVector.Clear();
         foreach (GameObject agent in agents)
         {
             allCreaturesObservationVector.AddRange(agent.GetComponent<CreatureGenerator>().CreatureObservationVector);
         }
 
-        Debug.Log(allCreaturesObservationVector);
+        //Debug.Log(allCreaturesObservationVector);
+        Debug.Log($"it's: {string.Join(", ", allCreaturesObservationVector)}");
+
     }
 }
