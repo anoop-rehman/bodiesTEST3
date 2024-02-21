@@ -26,7 +26,9 @@ def make_np(x):
 
 
 def _prepare_pytorch(x):
-    x = x.detach().cpu().numpy()
+    if isinstance(x, torch.autograd.Variable):
+        x = x.data
+    x = x.cpu().numpy()
     return x
 
 
