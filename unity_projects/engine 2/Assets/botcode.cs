@@ -18,7 +18,7 @@ public class CreatureGenerator : Agent
     private GameObject targetCube;
     private Vector3 previousVelocity;
 
-    public List<float> allCreaturesObservationVector = new();
+    //public List<float> allCreaturesObservationVector = new();
 
 
     public override void Initialize()
