@@ -18,7 +18,7 @@ public class CreatureGenerator : Agent
     private GameObject targetCube;
     private Vector3 previousVelocity;
 
-    //public List<float> allCreaturesObservationVector = new();
+    public List<float> CreatureObservationVector = new();
 
 
     public override void Initialize()
@@ -212,7 +212,7 @@ public class CreatureGenerator : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        List<float> CreatureObservationVector = new();
+        //List<float> CreatureObservationVector = new();
 
         //sensor.AddObservation(torsoRb.transform.localPosition);
         //sensor.AddObservation(torsoRb.transform.localRotation);
@@ -273,11 +273,11 @@ public class CreatureGenerator : Agent
 
 
         //Debug.Log($"Observations: {torsoRb.transform.localPosition}, {observation2}");
-        if (transform.parent.name == "environment")
-        {
-            Debug.Log($"agent 1's observationVector is: {string.Join(", ", CreatureObservationVector)}");
-            //Debug.Log($"the length of agent 1's observationVector is: {observationVector.Count}");
-        }
+        //if (transform.parent.name == "environment")
+        //{
+        //    Debug.Log($"agent 1's observationVector is: {string.Join(", ", CreatureObservationVector)}");
+        //    //Debug.Log($"the length of agent 1's observationVector is: {observationVector.Count}");
+        //}
 
 
     }
