@@ -272,7 +272,8 @@ public class CreatureGenerator : Agent
         //Debug.Log($"Observations: {torsoRb.transform.localPosition}, {observation2}");
         if (transform.parent.name == "environment")
         {
-            Debug.Log($"agent 1's observationVector is: {observationVector}");
+            //Debug.Log($"agent 1's observationVector is: {string.Join(", ", observationVector)}");
+            Debug.Log($"the length of agent 1's observationVector is: {observationVector.Count}");
         }
 
 
