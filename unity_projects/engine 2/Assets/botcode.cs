@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Actuators;
@@ -188,6 +190,8 @@ public class CreatureGenerator : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
+        List<float> allObservations = new List<float>();
+
         sensor.AddObservation(torsoRb.transform.localPosition);
         sensor.AddObservation(torsoRb.transform.localRotation);
         sensor.AddObservation(torsoRb.velocity);
@@ -227,6 +231,15 @@ public class CreatureGenerator : Agent
         {
             sensor.AddObservation(transform.InverseTransformPoint(targetCube.transform.position));
         }
+
+
+        //Debug.Log($"Observations: {torsoRb.transform.localPosition}, {observation2}");
+        if (transform.parent.name == "environment")
+        {
+            Debug.Log($"agent 1s torsoRb.transform.localPosition: {torsoRb.transform.localPosition}");
+        }
+
+
     }
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
