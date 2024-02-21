@@ -41,6 +41,11 @@ public class RLAlgorithm : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!AreAllAgentsInitialized())
+        {
+            return; // Skip this frame if not all agents are ready
+        }
+
         allCreaturesObservationVector.Clear();
         foreach (GameObject agent in agents)
         {
@@ -48,7 +53,20 @@ public class RLAlgorithm : MonoBehaviour
         }
 
         //Debug.Log(allCreaturesObservationVector);
-        Debug.Log($"it's: {string.Join(", ", allCreaturesObservationVector)}");
+        //Debug.Log($"it's: {string.Join(", ", allCreaturesObservationVector)}");
+        Debug.Log(allCreaturesObservationVector.Count);
 
+    }
+
+    bool AreAllAgentsInitialized()
+    {
+        foreach (GameObject agent in agents)
+        {
+            if (!agent.GetComponent<CreatureGenerator>().isInitialized)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

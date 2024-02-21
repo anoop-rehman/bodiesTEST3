@@ -19,6 +19,7 @@ public class CreatureGenerator : Agent
     private Vector3 previousVelocity;
 
     public List<float> CreatureObservationVector = new();
+    public bool isInitialized = false;
 
 
     public override void Initialize()
@@ -212,12 +213,19 @@ public class CreatureGenerator : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
+
+
+        isInitialized = false;
+
+        CreatureObservationVector.Clear();
+
         //List<float> CreatureObservationVector = new();
 
         //sensor.AddObservation(torsoRb.transform.localPosition);
         //sensor.AddObservation(torsoRb.transform.localRotation);
         //sensor.AddObservation(torsoRb.velocity);
         //sensor.AddObservation(torsoRb.angularVelocity);
+
 
         AddAndTrackObservation(sensor, CreatureObservationVector, torsoRb.transform.localPosition);
         AddAndTrackObservation(sensor, CreatureObservationVector, torsoRb.transform.localRotation);
@@ -270,6 +278,8 @@ public class CreatureGenerator : Agent
             //sensor.AddObservation(transform.InverseTransformPoint(targetCube.transform.position));
             AddAndTrackObservation(sensor, CreatureObservationVector, targetCube.transform.position);
         }
+
+        isInitialized = true;
 
 
         //Debug.Log($"Observations: {torsoRb.transform.localPosition}, {observation2}");
