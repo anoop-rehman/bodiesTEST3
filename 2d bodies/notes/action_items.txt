@@ -1,0 +1,28 @@
+make environment
+
+transformer dataset
+
+train ball heat map, train movement heat map
+
+write mcts for each case
+
+train networks through mcts
+
+add self play
+
+--
+
+consideration list
+
+use heat map to aggressively crop what mcts scenarios are looked at
+- general actions, move up, down, left, right, pass, shoot
+each player will have own mcts, with one general heat map
+- maybe each team? -> more data efficient already doing all the simulation for one player
+- the internal neat network of the player is used for curriculum learning
+
+--
+
+bucket list
+
+add the deepmind paper so it learns from mistakes immediately
+

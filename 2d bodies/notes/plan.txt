@@ -1,0 +1,82 @@
+transformer heatmaps with mcts
+
+2d simulation
+    ball can be kicked some amount
+    ball can be intercepted
+    ball can be taken away
+
+heat maps with monte carlo tree search
+    visualization will be important
+    the end nodes will be more than the current moves, and cur
+
+    If a player has the ball, consult the ball movement heatmap to guide potential passes, dribbles, or shots.
+    Each player consults their heatmap to determine the best position they should move to next.
+
+heatmaps:
+    random actions to create the dataset to trian the transformers
+
+Integrating Heatmaps into MCTS:
+Selection:
+
+Ball Possession: If the agent/player in consideration has the ball, the ball movement heatmap can influence the selection step. Nodes (actions) leading to "hotter" areas might be given a slight bias or priority in the selection process.
+Without Ball: The player movement heatmap can guide selection, prioritizing nodes that move the agent towards favorable positions.
+Simulation (Rollout):
+
+Instead of random simulations, heatmaps can guide the rollouts. For instance, simulated actions (like passes or movements) can be biased towards hotter regions of the heatmap. This makes the rollouts more representative of "intelligent" play rather than purely random actions.
+Expansion:
+
+Heatmaps can also influence which actions get expanded first. Instead of uniformly random expansion, you might first expand nodes corresponding to hotter regions.
+Points to Consider:
+Balance: It's essential to maintain a balance between heatmap-guided actions and exploration. If you rely too heavily on the heatmap, you might overlook novel or non-obvious strategies. The balance ensures that the MCTS doesn't become overly deterministic and can still explore a diverse range of strategies.
+
+Dynamic Adaptation: As the game progresses, the relevance of certain areas in the heatmap might change. MCTS, with its iterative nature, can adapt to these changing priorities if the heatmaps are updated frequently.
+
+Computational Efficiency: Guiding MCTS with heatmaps can make the search more computationally efficient. By focusing on promising areas, you might need fewer simulations to converge to a good strategy.
+
+In essence, while the core mechanics of MCTS remain unchanged, the heatmaps serve as a guiding heuristic at various stages, allowing the tree search to be more informed, focused, and potentially more effective.
+
+
+i also want to add in that thing where it learns hyper efficiently from new stuff in the memory
+
+
+1. Single Heatmap for Player Movement:
+If you're using a single heatmap to guide the movement of all players, the heatmap needs to capture global strategic information. Here's how you could interpret it:
+
+Hot Zones: Areas of the field that are currently strategically important for players to occupy or move towards.
+Cool Zones: Areas that are of lesser importance or are already adequately covered.
+For each player:
+
+Evaluate Proximity to Hot Zones: Determine which player is closest to the most crucial hot zone. Direct that player to occupy or control that area.
+Distribute Players: Ensure that players aren't clumped together or chasing the same hot zones. Distribute players to different strategic areas based on proximity and current game context.
+Dynamic Adjustments: The heatmap will change over time. Continually adjust player positions based on updated strategic insights.
+
+1. Individual MCTS for Each Player:
+Player-Specific Decisions: Each player runs its own MCTS to decide its actions based on its current position, the position of the ball, and other context-specific information.
+
+Shared Heatmaps: While each player has its own MCTS, they can all refer to the shared heatmaps (both ball movement and player movement) to inform their decision-making process.
+
+2. Interpreting Shared Player Movement Heatmap:
+Dynamic Regions of Interest: The shared heatmap will highlight areas of strategic importance. Players can decide, based on proximity and current game context, which regions they should move towards.
+
+Avoiding Conflicts: To prevent multiple players from targeting the same hot zone, incorporate a mechanism where, once a player commits to moving to a hot zone, that zone's importance decreases for other players.
+
+3. Communication Mechanism:
+Implicit Communication: By observing the actions of teammates, each player can infer intended strategies and adapt. For instance, if one player is moving aggressively forward, others might infer an offensive push and adjust their positions to support or cover.
+
+Explicit Communication (optional): Implement a simple signaling mechanism where players can send discrete signals to teammates, indicating intentions like "defending", "attacking", or "needing support". This can help coordinate strategies without centralizing decision-making.
+
+4. Feedback Loop for Training:
+Reinforcement Learning: Post-game, gather data on individual and team performance. Use this data to fine-tune the transformers generating the heatmaps. This ensures that the strategic guidance provided by the heatmaps evolves based on actual gameplay outcomes.
+
+
+roll based behavior?? if by goal be more of a goalie
+
+1. Action Space Reduction:
+Instead of considering every minute action possibility (e.g., every possible direction a player could move), group actions into broader categories, like:
+
+Move forward
+Move backward
+Move left
+Move right
+Pass
+Shoot
