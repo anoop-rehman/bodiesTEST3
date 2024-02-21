@@ -188,55 +188,91 @@ public class CreatureGenerator : Agent
         cubeRb.useGravity = true;
     }
 
+
+    void AddAndTrackObservation(VectorSensor sensor, List<float> observationVector, Vector3 observation)
+    {
+        sensor.AddObservation(observation);
+        observationVector.AddRange(new float[] { observation.x, observation.y, observation.z });
+    }
+
+    void AddAndTrackObservation(VectorSensor sensor, List<float> observationVector, Quaternion observation)
+    {
+        sensor.AddObservation(observation);
+        observationVector.AddRange(new float[] { observation.x, observation.y, observation.z, observation.w });
+    }
+
+    void AddAndTrackObservation(VectorSensor sensor, List<float> observationVector, float observation)
+    {
+        sensor.AddObservation(observation);
+        observationVector.Add(observation);
+    }
+
     public override void CollectObservations(VectorSensor sensor)
     {
-        List<float> allObservations = new List<float>();
+        List<float> observationVector = new();
 
-        sensor.AddObservation(torsoRb.transform.localPosition);
-        sensor.AddObservation(torsoRb.transform.localRotation);
-        sensor.AddObservation(torsoRb.velocity);
-        sensor.AddObservation(torsoRb.angularVelocity);
+        //sensor.AddObservation(torsoRb.transform.localPosition);
+        //sensor.AddObservation(torsoRb.transform.localRotation);
+        //sensor.AddObservation(torsoRb.velocity);
+        //sensor.AddObservation(torsoRb.angularVelocity);
+
+        AddAndTrackObservation(sensor, observationVector, torsoRb.transform.localPosition);
+        AddAndTrackObservation(sensor, observationVector, torsoRb.transform.localRotation);
+        AddAndTrackObservation(sensor, observationVector, torsoRb.velocity);
+        AddAndTrackObservation(sensor, observationVector, torsoRb.angularVelocity);
 
         Vector3 acceleration = (torsoRb.velocity - previousVelocity) / Time.fixedDeltaTime;
-        sensor.AddObservation(acceleration);
+        //sensor.AddObservation(acceleration);
+        AddAndTrackObservation(sensor, observationVector, acceleration);
         previousVelocity = torsoRb.velocity;
 
-        sensor.AddObservation(torsoRb.angularVelocity);
+        //sensor.AddObservation(torsoRb.angularVelocity);
+        AddAndTrackObservation(sensor, observationVector, torsoRb.angularVelocity);
+
 
         RaycastHit hit;
         if (Physics.Raycast(torsoRb.position, Vector3.down, out hit, 10f, groundLayer))
         {
-            sensor.AddObservation(hit.distance);
+            //sensor.AddObservation(hit.distance);
+            AddAndTrackObservation(sensor, observationVector, hit.distance);
+
         }
         else
         {
-            sensor.AddObservation(10f);
+            //sensor.AddObservation(10f);
+            AddAndTrackObservation(sensor, observationVector, 10f);
+
         }
 
         foreach (var joint in joints)
         {
             if (joint != null)
             {
-                sensor.AddObservation(joint.angle);
-                sensor.AddObservation(joint.velocity);
+                //sensor.AddObservation(joint.angle);
+                //sensor.AddObservation(joint.velocity);
+                AddAndTrackObservation(sensor, observationVector, joint.angle);
+                AddAndTrackObservation(sensor, observationVector, joint.velocity);
             }
             else
             {
-                sensor.AddObservation(0f);
-                sensor.AddObservation(0f);
+                //sensor.AddObservation(0f);
+                //sensor.AddObservation(0f);
+                AddAndTrackObservation(sensor, observationVector, 0f);
+                AddAndTrackObservation(sensor, observationVector, 0f);
             }
         }
 
         if (targetCube != null)
         {
-            sensor.AddObservation(transform.InverseTransformPoint(targetCube.transform.position));
+            //sensor.AddObservation(transform.InverseTransformPoint(targetCube.transform.position));
+            AddAndTrackObservation(sensor, observationVector, targetCube.transform.position);
         }
 
 
         //Debug.Log($"Observations: {torsoRb.transform.localPosition}, {observation2}");
         if (transform.parent.name == "environment")
         {
-            Debug.Log($"agent 1s torsoRb.transform.localPosition: {torsoRb.transform.localPosition}");
+            Debug.Log($"agent 1's observationVector is: {observationVector}");
         }
 
 
