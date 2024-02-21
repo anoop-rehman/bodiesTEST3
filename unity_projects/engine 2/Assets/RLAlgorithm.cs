@@ -52,9 +52,8 @@ public class RLAlgorithm : MonoBehaviour
             allCreaturesObservationVector.AddRange(agent.GetComponent<CreatureGenerator>().CreatureObservationVector);
         }
 
-        //Debug.Log(allCreaturesObservationVector);
-        //Debug.Log($"it's: {string.Join(", ", allCreaturesObservationVector)}");
-        Debug.Log(allCreaturesObservationVector.Count);
+        Debug.Log($"it's: {string.Join(", ", allCreaturesObservationVector)}");
+        //Debug.Log(allCreaturesObservationVector.Count);
 
     }
 
